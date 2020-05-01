@@ -11,18 +11,38 @@ export default class ApiService {
     }
 
     async getAllUsers() {
-        return await this.getServiceApiByUrl(`/users/`);
+        let user = await this.getServiceApiByUrl(`/users/`);
+        return user.map(this._userDataTransform);
     }
 
     async getUserById(id) {
-        return await this.getServiceApiByUrl(`/users/${id}`);
+        let user = await this.getServiceApiByUrl(`/users/${id}`);
+        return this._userDataTransform(user);
     }
 
     async getAllSites() {
-        return await this.getServiceApiByUrl(`/sites/`);
+        let site = await this.getServiceApiByUrl(`/sites/`);
+        return site.map(this._siteDataTransform);
     }
 
     async getSiteById(id) {
-        return await this.getServiceApiByUrl(`/sites/${id}`);
+        let site = await this.getServiceApiByUrl(`/sites/${id}`);
+        return this._siteDataTransform(site);
+    }
+
+    _userDataTransform(user) {
+        return {
+            name: user.name,
+            avatar: user.avatar
+        }
+    }
+
+    _siteDataTransform(site) {
+        return {
+            site: site.site,
+            ip: site.ip,
+            activity: site.activity,
+            image: site.image
+        }
     }
 }
