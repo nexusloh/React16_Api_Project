@@ -1,0 +1,17 @@
+.random-site-wrapper {
+  display: flex;
+  justify-content: center;
+
+  .site-image {
+    max-width: 200px;
+  }
+
+  .site-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 13px;
+    
+    p { span { color: #f85353; } }
+  }
+}
